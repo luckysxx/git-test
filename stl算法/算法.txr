@@ -1,0 +1,5 @@
+accumulate(nums.begin , nums.end() , 0) 从0开始累加
+*max_element(nums.begin(),nums.end()) 最大值
+find(nums.begin(),nums.end(),targrt) 寻找目标
+sort(nums.begin(),nums.end(),cmp) 按要求排序 
+reverse(nums.begin(),nums.end()) 反转

@@ -1,0 +1,10 @@
+Parent writing to the file.
+Parent writing to the file.
+Parent writing to the file.
+Parent writing to the file.
+Parent writing to the file.
+Child writing to the file.
+Child writing to the file.
+Child writing to the file.
+Child writing to the file.
+Child writing to the file.
