@@ -1,0 +1,29 @@
+内存序控制
+所有操作支持指定内存序（默认为 memory_order_seq_cst）：
+内存序	作用
+memory_order_relaxed	只确保操作是原子性的, 不对内存顺序做任何保证,无同步（性能最高）
+memory_order_acquire:   用于读操作, 比如std::atomic::load(memory_order_acquire), 会在读操作之后插入一个LoadLoad屏障,
+                        确保屏障之后的所有操作不会重排到屏障之前, 如下图所示:
+                        +---------------------------+
+                        |     LoadLoad Barrier      |
+                        +-----^---------------------+
+                            |
+                            |
+                            | No Moving Up
+                            |
+                            |
+                            +
+
+memory_order_release:   用于写操作, 比如std::atomic::store(T, memory_order_release), 会在写操作之前插入一个StoreStore屏障
+                        确保屏障之前的所有操作不会重排到屏障之后, 如下图所示
+                            +
+                            | 
+                            |
+                            | No Moving Down
+                            |
+                        +-----v---------------------+
+                        |     StoreStore Barrier    |
+                        +---------------------------+
+
+memory_order_acq_rel	同时包含 acquire 和 release 语义
+memory_order_seq_cst	全局顺序一致性（默认，最严格）
